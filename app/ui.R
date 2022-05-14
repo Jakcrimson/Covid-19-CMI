@@ -20,7 +20,8 @@ library(zoo)
 # prepa analyse
 # ====================================
 
-df_page1 <- read.csv("Documents/FAC/2021_2022/PROJET_CMI/datasets/owid-covid-data.csv")
+#df_page1 <- read.csv("Documents/FAC/2021_2022/PROJET_CMI/datasets/owid-covid-data.csv")
+df_page1 = read.csv('./data/owid-covid-data.csv')
 df_page1$date = as.Date(df_page1$date)
 
 varNames = names(df_page1)
@@ -36,7 +37,8 @@ varNames = varNames[varNames!="iso_code" & varNames!="continent" & varNames!="lo
 # donnees
 # =============
 
-df <- read.csv("Documents/FAC/2021_2022/PROJET_CMI/datasets/owid-covid-data.csv")
+#df <- read.csv("Documents/FAC/2021_2022/PROJET_CMI/datasets/owid-covid-data.csv")
+df = read.csv('./data/owid-covid-data.csv')
 
 # function to remove rows with NA values
 rm_na = function(df,cols){
@@ -138,7 +140,7 @@ get_RMSE = function(df_norm, model){
 
 
 target_variables = c('total_cases','total_deaths')
-LR <- readRDS('Documents/FAC/2021_2022/PROJET_CMI/rds/LR.rds')
+LR <- readRDS('./data/LR.rds')
 models = c('LR','SVM','RF')
 
 model = LR
@@ -153,10 +155,11 @@ ui <- dashboardPage(skin = 'blue',
                       title = "Covid-19",titleWidth = 250
                     ),
                     
-                    dashboardSidebar(sidebarMenu("sidebar",
+                    dashboardSidebar(sidebarMenu(
                                                  disable = FALSE,
                                                  menuItem("Descriptive Analysis", tabName = "analyse", icon = icon('list'), selected = 1 ),
-                                                 menuItem("Modelisation", tabName = "model", icon = icon('table'))
+                                                 menuItem("Modelisation", tabName = "model", icon = icon('table')),
+                                                 menuItem("Our Project", tabName = 'project', icon = icon('signature'))
                     )), 
                     
                     
@@ -236,7 +239,12 @@ ui <- dashboardPage(skin = 'blue',
                                 uiOutput(
                                   outputId = 'InputUI'
                                 ) 
-                        )   
+                        ),
+                        
+                        tabItem(tabName = 'project',
+                                h1('Machine Learning for modeling and predicting the evolution 
+                                of the COVID-19 epidemic at the global level')
+                                )
                       )
                     ),
 )
