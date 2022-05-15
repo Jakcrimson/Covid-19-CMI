@@ -212,18 +212,19 @@ ui <- dashboardPage(skin = 'blue',
                                     tabsetPanel(
                                       tabPanel('Plot',uiOutput(outputId = "plot")),
                                       tabPanel('Table',DT::DTOutput('table_timeSeries')),
-                                      tabPanel('Summary',tableOutput('summary_var'))
+                                      tabPanel('Summary',tableOutput('summary_var')),
+                                      tabPanel('Map', plotly::plotlyOutput(outputId = "map"),)
                                     ),
                                     
-                                    plotly::plotlyOutput(outputId = "map"),
-                                    div(
-                                      
-                                      sliderInput("date_map",
-                                                  "Date:",
-                                                  min = as.Date("2020-01-01","%Y-%m-%d"),
-                                                  max = as.Date("2022-02-02","%Y-%m-%d"),
-                                                  value=as.Date("2022-01-01"),
-                                                  timeFormat="%Y-%m-%d"))
+                                    # plotly::plotlyOutput(outputId = "map"),
+                                    # div(
+                                    #   
+                                    #   sliderInput("date_map",
+                                    #               "Date:",
+                                    #               min = as.Date("2020-01-01","%Y-%m-%d"),
+                                    #               max = as.Date("2022-02-02","%Y-%m-%d"),
+                                    #               value=as.Date("2022-01-01"),
+                                    #               timeFormat="%Y-%m-%d"))
                                   )
                                   #div(plotlyOutput(outputId = "histogram"), style = "margin-top: 50px"),
                                   #div(DT::dataTableOutput(outputId = "dataTable"), style = "margin-top: 50px")

@@ -175,6 +175,8 @@ server <- function(input, output, session) {
     {
       df_page1_plot = timeSeries_values()
       
+      
+      
       if(input$plot_choice=="line"){
         output$line <- plotly::renderPlotly({
           plot_ly(x=df_page1_plot[,c(2)],y=df_page1_plot[,c(3)], type = 'scatter', mode = 'lines', color = df_page1_plot$location)
@@ -190,8 +192,12 @@ server <- function(input, output, session) {
       }   
       
       else if(input$plot_choice=="boxplot"){
+        t = t.test(df_page1_plot[[input$variable_options]],df_page1_plot$location)
         output$box <- plotly::renderPlotly({
           plot_ly(x=df_page1_plot[,c(3)], type = 'box', color = df_page1_plot$location)
+          # layout(
+          #   annotations = list(text = "Your text here :)",  x = 100, y = 25, showarrow=F),
+          # )
           #%>% layout(title = input$variable_options)
         })
       } 
@@ -221,7 +227,7 @@ server <- function(input, output, session) {
   
   output$map <- plotly::renderPlotly({
     
-    df_page12 = df_page1 %>% filter(date == as.Date(as.character(input$date_map))) %>% select(c("location","iso_code",input$variable_options))
+    df_page12 = df_page1 %>% filter(date == as.Date(as.character(input$dateRange))) %>% select(c("location","iso_code",input$variable_options))
     
     plot_ly(
       df_page12, 
