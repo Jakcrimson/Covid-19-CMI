@@ -5,7 +5,9 @@ account: g1ov6nn1
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6302886
-bundleId: 5906791
+bundleId: 5907820
 url: https://g1ov6nn1.shinyapps.io/app-covid19/
-when: 1652560873.28956
-lastSyncTime: 1652560873.28959
+when: 1652614480.18117
+lastSyncTime: 1652614480.18119
+asMultiple: FALSE
+asStatic: FALSE
