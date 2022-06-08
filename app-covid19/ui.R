@@ -213,18 +213,18 @@ ui <- dashboardPage(skin = 'blue',
                                       tabPanel('Plot',uiOutput(outputId = "plot")),
                                       tabPanel('Table',DT::DTOutput('table_timeSeries')),
                                       tabPanel('Summary',tableOutput('summary_var')),
-                                      tabPanel('Map', plotly::plotlyOutput(outputId = "map"),)
+                                      #tabPanel('Map', plotly::plotlyOutput(outputId = "map"),)
                                     ),
                                     
-                                    # plotly::plotlyOutput(outputId = "map"),
-                                    # div(
-                                    #   
-                                    #   sliderInput("date_map",
-                                    #               "Date:",
-                                    #               min = as.Date("2020-01-01","%Y-%m-%d"),
-                                    #               max = as.Date("2022-02-02","%Y-%m-%d"),
-                                    #               value=as.Date("2022-01-01"),
-                                    #               timeFormat="%Y-%m-%d"))
+                                    plotly::plotlyOutput(outputId = "map"),
+                                    div(
+
+                                      sliderInput("date_map",
+                                                  "Date:",
+                                                  min = as.Date("2020-01-01","%Y-%m-%d"),
+                                                  max = as.Date("2022-02-02","%Y-%m-%d"),
+                                                  value=as.Date("2022-01-01"),
+                                                  timeFormat="%Y-%m-%d"))
                                   )
                                   #div(plotlyOutput(outputId = "histogram"), style = "margin-top: 50px"),
                                   #div(DT::dataTableOutput(outputId = "dataTable"), style = "margin-top: 50px")
@@ -254,8 +254,15 @@ ui <- dashboardPage(skin = 'blue',
                         
                         tabItem(tabName = 'project',
                                 h1('Machine Learning for modeling and predicting the evolution 
-                                of the COVID-19 epidemic at the global level')
+                                of the COVID-19 epidemic at the global level'),
+                                "Our goal is to predict the evolution of the COVID-19 epidemic at the global level from public data using Machine Learning.
+                                
+                                For this, we experimented with many algorithms to see which ones would be the most efficient for our problem. 
+                                From these algorithms, we could build this Rshiny page thanks to the generated models.
+                                
+                                You can see the estimates by choosing the parameters and the algorithms you want to see in action."
                                 )
+                                
                       )
                     ),
 )

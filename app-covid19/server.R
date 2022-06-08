@@ -192,7 +192,7 @@ server <- function(input, output, session) {
       }   
       
       else if(input$plot_choice=="boxplot"){
-        t = t.test(df_page1_plot[[input$variable_options]],df_page1_plot$location)
+        t = df_page1_plot[[input$variable_options]]#,df_page1_plot$location)
         output$box <- plotly::renderPlotly({
           plot_ly(x=df_page1_plot[,c(3)], type = 'box', color = df_page1_plot$location)
           # layout(
@@ -227,7 +227,7 @@ server <- function(input, output, session) {
   
   output$map <- plotly::renderPlotly({
     
-    df_page12 = df_page1 %>% filter(date == as.Date(as.character(input$dateRange))) %>% select(c("location","iso_code",input$variable_options))
+    df_page12 = df_page1 %>% filter(date == as.Date(as.character(input$date_map))) %>% select(c("location","iso_code",input$variable_options))
     
     plot_ly(
       df_page12, 
